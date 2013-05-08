@@ -42,6 +42,13 @@ UIKIT_EXTERN NSString *const UIColorTertiaryColorName;
 
 @end
 
+@interface NSString (UIColorHelpers)
+
+- (NSString *)hexColorString;
+- (NSArray *)RGBColorComponents;
+
+@end
+
 CG_INLINE CGColorRef CGColorCreateWith8BitRGBA(CGFloat r, CGFloat g, CGFloat b, CGFloat a)
 {
     const CGFloat components[] = {(r / 255.0), (g / 255.0), (b / 255.0), a};
@@ -61,26 +68,9 @@ CG_INLINE CGColorRef CGColorCreateWithHexRGBA(u_int32_t RBGA)
 
 CG_INLINE CGColorRef CGColorCreateWithHexString(NSString *hexString)
 {
-    if ([hexString hasPrefix:@"#"])
+    hexString = [hexString hexColorString];
+    if (hexString != nil)
     {
-        hexString = [hexString stringByReplacingOccurrencesOfString:@"#"
-                                                         withString:@"0x"];
-    }
-    if ([hexString hasPrefix:@"0x"])
-    {
-        if ([hexString length] < 10)
-        {
-            NSString *pattern = [hexString stringByReplacingOccurrencesOfString:@"0x"
-                                                                     withString:@""];
-            while ([hexString length] < 10) {
-                hexString = [hexString stringByAppendingString:pattern];
-            }
-            
-            hexString = [hexString substringToIndex:10];
-            hexString = [hexString stringByReplacingCharactersInRange:NSMakeRange(8, 2)
-                                                           withString:@"FF"];
-        }
-        
         NSUInteger RGBA = 0x0;
         [[NSScanner scannerWithString:hexString] scanHexInt:&RGBA];
         return CGColorCreateWithHexRGBA(RGBA);
@@ -90,15 +80,7 @@ CG_INLINE CGColorRef CGColorCreateWithHexString(NSString *hexString)
 
 CG_INLINE CGColorRef CGColorCreateWithRGBAString(NSString *RGBAString)
 {
-    NSRange range = [RGBAString rangeOfString:@"("];
-    range.location ++;
-    range.length = [RGBAString rangeOfString:@")"].location - range.location;
-    RGBAString = [RGBAString substringWithRange:range];
-    NSArray *components = [RGBAString componentsSeparatedByString:@","];
-    if ([components count] == 3)
-    {
-        components = [components arrayByAddingObject:@"1.0"];
-    }
+    NSArray *components = [RGBAString RGBColorComponents];
     if ([components count] == 4)
     {
         return CGColorCreateWith8BitRGBA([components[0] floatValue],

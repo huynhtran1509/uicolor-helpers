@@ -233,3 +233,54 @@ NSString *const UIColorTertiaryColorName = @"UIColorSecondaryColorName";
 }
 
 @end
+
+@implementation NSString (UIColorHelpers)
+
+- (NSString *)hexColorString
+{
+    NSString *hexString = self;
+    if ([hexString hasPrefix:@"#"])
+    {
+        hexString = [hexString stringByReplacingOccurrencesOfString:@"#"
+                                                         withString:@"0x"];
+    }
+    if ([hexString hasPrefix:@"0x"])
+    {
+        if ([hexString length] < 10)
+        {
+            NSString *pattern = [hexString stringByReplacingOccurrencesOfString:@"0x"
+                                                                     withString:@""];
+            while ([hexString length] < 10) {
+                hexString = [hexString stringByAppendingString:pattern];
+            }
+            
+            hexString = [hexString substringToIndex:10];
+            hexString = [hexString stringByReplacingCharactersInRange:NSMakeRange(8, 2)
+                                                           withString:@"FF"];
+        }
+        
+        return hexString;
+    }
+    return nil;
+}
+
+- (NSArray *)RGBColorComponents
+{
+    NSString *RGBAString = self;
+    NSRange range = [RGBAString rangeOfString:@"("];
+    range.location ++;
+    range.length = [RGBAString rangeOfString:@")"].location - range.location;
+    RGBAString = [RGBAString substringWithRange:range];
+    NSArray *components = [RGBAString componentsSeparatedByString:@","];
+    if ([components count] == 3)
+    {
+        components = [components arrayByAddingObject:@"1.0"];
+    }
+    if ([components count] == 4)
+    {
+        return components;
+    }
+    return nil;
+}
+
+@end
