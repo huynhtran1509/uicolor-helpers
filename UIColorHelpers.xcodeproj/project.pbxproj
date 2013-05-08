@@ -16,6 +16,8 @@
 		BDD86F62173AA16700FA4CB0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD86F61173AA16700FA4CB0 /* Default.png */; };
 		BDD86F64173AA16700FA4CB0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD86F63173AA16700FA4CB0 /* Default@2x.png */; };
 		BDD86F66173AA16700FA4CB0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD86F65173AA16700FA4CB0 /* Default-568h@2x.png */; };
+		BDD86F6F173AA1AC00FA4CB0 /* UIColor+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD86F6E173AA1AC00FA4CB0 /* UIColor+Helpers.m */; };
+		BDD86F71173AF45B00FA4CB0 /* colors.json in Resources */ = {isa = PBXBuildFile; fileRef = BDD86F70173AF45B00FA4CB0 /* colors.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,9 @@
 		BDD86F61173AA16700FA4CB0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BDD86F63173AA16700FA4CB0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		BDD86F65173AA16700FA4CB0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BDD86F6D173AA1AC00FA4CB0 /* UIColor+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helpers.h"; sourceTree = "<group>"; };
+		BDD86F6E173AA1AC00FA4CB0 /* UIColor+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helpers.m"; sourceTree = "<group>"; };
+		BDD86F70173AF45B00FA4CB0 /* colors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = colors.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +83,7 @@
 		BDD86F55173AA16700FA4CB0 /* UIColorHelpers */ = {
 			isa = PBXGroup;
 			children = (
+				BDD86F6C173AA18D00FA4CB0 /* Classes */,
 				BDD86F5E173AA16700FA4CB0 /* WTAppDelegate.h */,
 				BDD86F5F173AA16700FA4CB0 /* WTAppDelegate.m */,
 				BDD86F56173AA16700FA4CB0 /* Supporting Files */,
@@ -95,9 +101,19 @@
 				BDD86F61173AA16700FA4CB0 /* Default.png */,
 				BDD86F63173AA16700FA4CB0 /* Default@2x.png */,
 				BDD86F65173AA16700FA4CB0 /* Default-568h@2x.png */,
+				BDD86F70173AF45B00FA4CB0 /* colors.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		BDD86F6C173AA18D00FA4CB0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BDD86F6D173AA1AC00FA4CB0 /* UIColor+Helpers.h */,
+				BDD86F6E173AA1AC00FA4CB0 /* UIColor+Helpers.m */,
+			);
+			path = Classes;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -155,6 +171,7 @@
 				BDD86F62173AA16700FA4CB0 /* Default.png in Resources */,
 				BDD86F64173AA16700FA4CB0 /* Default@2x.png in Resources */,
 				BDD86F66173AA16700FA4CB0 /* Default-568h@2x.png in Resources */,
+				BDD86F71173AF45B00FA4CB0 /* colors.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +184,7 @@
 			files = (
 				BDD86F5C173AA16700FA4CB0 /* main.m in Sources */,
 				BDD86F60173AA16700FA4CB0 /* WTAppDelegate.m in Sources */,
+				BDD86F6F173AA1AC00FA4CB0 /* UIColor+Helpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

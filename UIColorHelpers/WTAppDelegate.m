@@ -7,6 +7,7 @@
 //
 
 #import "WTAppDelegate.h"
+#import "UIColor+Helpers.h"
 
 @implementation WTAppDelegate
 
@@ -16,6 +17,22 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    
+//    UIColor *color = [UIColor colorWithHexString:@"#a5f"];
+    UIColor *color = [UIColor colorWithRGBAString:@"rgb(255.0, 0.0, 0.0)"];
+    [[self window] setBackgroundColor:color];
+    NSLog(@"Color: %@", [color hexStringValue]);
+    NSLog(@"Color: %@", [color RGBAStringValue]);
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"colors" ofType:@"json"];
+    if ([UIColor setColorsWithContentsOfFile:path])
+    {
+        NSLog(@"Colors loaded");
+        [[self window] setBackgroundColor:[UIColor colorNamed:@"color1"]];
+    }
+    
+    
     return YES;
 }
 
