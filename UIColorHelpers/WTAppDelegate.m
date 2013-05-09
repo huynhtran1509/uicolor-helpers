@@ -11,6 +11,54 @@
 
 @implementation WTAppDelegate
 
+- (void)testColorWithRGBAString
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    UIColor *color = [UIColor colorWithRGBAString:@"rgb(255.0, 0.0, 0.0)"];
+    [[self window] setBackgroundColor:color];
+    NSLog(@"Color: %@", [color RGBAStringValue]);
+    
+    [self performSelector:@selector(testColorWithHexString)
+               withObject:nil
+               afterDelay:1.5];
+}
+
+- (void)testColorWithHexString
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    UIColor *color = [UIColor colorWithHexString:@"#ff00ff"];
+    [[self window] setBackgroundColor:color];
+    NSLog(@"Color: %@", [color hexStringValue]);
+    
+    [self performSelector:@selector(testJSONColors)
+               withObject:nil
+               afterDelay:1.5];
+}
+
+- (void)testJSONColors
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"colors" ofType:@"json"];
+    if ([UIColor setColorsWithContentsOfFile:path])
+    {
+        [[self window] setBackgroundColor:[UIColor colorNamed:@"color1"]];
+    }
+    
+    [self performSelector:@selector(testPlistColors)
+               withObject:nil
+               afterDelay:1.5];
+}
+
+- (void)testPlistColors
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"colors" ofType:@"plist"];
+    if ([UIColor setColorsWithContentsOfFile:path])
+    {
+        [[self window] setBackgroundColor:[UIColor colorNamed:@"color2"]];
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -18,20 +66,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    
-//    UIColor *color = [UIColor colorWithHexString:@"#a5f"];
-    UIColor *color = [UIColor colorWithRGBAString:@"rgb(255.0, 0.0, 0.0)"];
-    [[self window] setBackgroundColor:color];
-    NSLog(@"Color: %@", [color hexStringValue]);
-    NSLog(@"Color: %@", [color RGBAStringValue]);
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"colors" ofType:@"json"];
-    if ([UIColor setColorsWithContentsOfFile:path])
-    {
-        NSLog(@"Colors loaded");
-        [[self window] setBackgroundColor:[UIColor colorNamed:@"color1"]];
-    }
-    
+    [self performSelector:@selector(testColorWithRGBAString)
+               withObject:nil
+               afterDelay:1.5];
     
     return YES;
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BDA3ECE8173BDF9800B25A5F /* colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = BDA3ECE7173BDF9800B25A5F /* colors.plist */; };
 		BDD86F50173AA16700FA4CB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD86F4F173AA16700FA4CB0 /* UIKit.framework */; };
 		BDD86F52173AA16700FA4CB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD86F51173AA16700FA4CB0 /* Foundation.framework */; };
 		BDD86F54173AA16700FA4CB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD86F53173AA16700FA4CB0 /* CoreGraphics.framework */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BDA3ECE7173BDF9800B25A5F /* colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = colors.plist; sourceTree = "<group>"; };
 		BDD86F4C173AA16700FA4CB0 /* UIColorHelpers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIColorHelpers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD86F4F173AA16700FA4CB0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BDD86F51173AA16700FA4CB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +104,7 @@
 				BDD86F63173AA16700FA4CB0 /* Default@2x.png */,
 				BDD86F65173AA16700FA4CB0 /* Default-568h@2x.png */,
 				BDD86F70173AF45B00FA4CB0 /* colors.json */,
+				BDA3ECE7173BDF9800B25A5F /* colors.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 				BDD86F64173AA16700FA4CB0 /* Default@2x.png in Resources */,
 				BDD86F66173AA16700FA4CB0 /* Default-568h@2x.png in Resources */,
 				BDD86F71173AF45B00FA4CB0 /* colors.json in Resources */,
+				BDA3ECE8173BDF9800B25A5F /* colors.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +303,7 @@
 				BDD86F6B173AA16700FA4CB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
