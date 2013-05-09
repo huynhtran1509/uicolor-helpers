@@ -8,9 +8,9 @@
 
 #import "UIColor+Helpers.h"
 
-NSString *const UIColorPrimaryColorName = @"UIColorPrimaryColorName";
-NSString *const UIColorSecondaryColorName = @"UIColorSecondaryColorName";
-NSString *const UIColorTertiaryColorName = @"UIColorSecondaryColorName";
+NSString *const UIColorPrimaryColorName = @"primaryColor";
+NSString *const UIColorSecondaryColorName = @"secondaryColor";
+NSString *const UIColorTertiaryColorName = @"tertiaryColor";
 
 @implementation UIColor (Helpers)
 
