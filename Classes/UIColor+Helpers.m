@@ -154,7 +154,7 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
 
 + (instancetype)colorWithHexRGBA:(NSUInteger)RGBA
 {
-    CGColorRef colorRef = CGColorCreateWithHexRGBA(RGBA);
+    CGColorRef colorRef = CGColorCreateWithHexRGBA((u_int32_t)RGBA);
     UIColor *color = [UIColor colorWithCGColor:colorRef];
     CGColorRelease(colorRef);
     return color;
@@ -198,10 +198,10 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
     {
         hexString = @"0x";
         const CGFloat *components = CGColorGetComponents(colorRef);
-        int count = CGColorGetNumberOfComponents(colorRef);
+        size_t count = CGColorGetNumberOfComponents(colorRef);
         for (int index = 0; index < count; index++)
         {
-            NSUInteger hex = components[index] * 0xFF;
+            u_int32_t hex = components[index] * 0xFF;
             NSString *component = [NSString stringWithFormat:@"%02X", hex];
             hexString = [hexString stringByAppendingString:component];
         }
@@ -220,7 +220,7 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
     {
         NSMutableArray *components = [NSMutableArray new];
         const CGFloat *colorComponents = CGColorGetComponents(colorRef);
-        int count = CGColorGetNumberOfComponents(colorRef);
+        size_t count = CGColorGetNumberOfComponents(colorRef);
         for (int index = 0; index < count; index++)
         {
            [components addObject:@(colorComponents[index] * 255.0)];

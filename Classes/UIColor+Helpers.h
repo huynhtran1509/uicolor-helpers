@@ -71,7 +71,7 @@ CG_INLINE CGColorRef CGColorCreateWithHexString(NSString *hexString)
     hexString = [hexString hexColorString];
     if (hexString != nil)
     {
-        NSUInteger RGBA = 0x0;
+        u_int32_t RGBA = 0x0;
         [[NSScanner scannerWithString:hexString] scanHexInt:&RGBA];
         return CGColorCreateWithHexRGBA(RGBA);
     }

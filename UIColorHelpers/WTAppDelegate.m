@@ -41,7 +41,7 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"colors" ofType:@"json"];
     if ([UIColor setColorsWithContentsOfFile:path])
     {
-        [[self window] setBackgroundColor:[UIColor colorNamed:@"color1"]];
+        [[self window] setBackgroundColor:[UIColor colorNamed:@"color4"]];
     }
     
     [self performSelector:@selector(testPlistColors)
