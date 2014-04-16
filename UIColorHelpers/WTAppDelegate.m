@@ -14,9 +14,9 @@
 - (void)testColorWithRGBAString
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    UIColor *color = [UIColor colorWithRGBAString:@"rgb(255.0, 0.0, 0.0)"];
+    UIColor *color = [UIColor wta_colorWithRGBAString:@"rgb(255.0, 0.0, 0.0)"];
     [[self window] setBackgroundColor:color];
-    NSLog(@"Color: %@", [color RGBAStringValue]);
+    NSLog(@"Color: %@", [color wta_RGBAStringValue]);
     
     [self performSelector:@selector(testColorWithHexString)
                withObject:nil
@@ -26,9 +26,9 @@
 - (void)testColorWithHexString
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    UIColor *color = [UIColor colorWithHexString:@"#ff00ff"];
+    UIColor *color = [UIColor wta_colorWithHexString:@"#ff00ff"];
     [[self window] setBackgroundColor:color];
-    NSLog(@"Color: %@", [color hexStringValue]);
+    NSLog(@"Color: %@", [color wta_hexStringValue]);
     
     [self performSelector:@selector(testJSONColors)
                withObject:nil
@@ -39,9 +39,9 @@
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *path = [[NSBundle mainBundle] pathForResource:@"colors" ofType:@"json"];
-    if ([UIColor setColorsWithContentsOfFile:path])
+    if ([UIColor wta_setColorsWithContentsOfFile:path])
     {
-        [[self window] setBackgroundColor:[UIColor colorNamed:@"color4"]];
+        [[self window] setBackgroundColor:[UIColor wta_colorNamed:@"color4"]];
     }
     
     [self performSelector:@selector(testPlistColors)
@@ -53,9 +53,9 @@
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *path = [[NSBundle mainBundle] pathForResource:@"colors" ofType:@"plist"];
-    if ([UIColor setColorsWithContentsOfFile:path])
+    if ([UIColor wta_setColorsWithContentsOfFile:path])
     {
-        [[self window] setBackgroundColor:[UIColor colorNamed:@"color2"]];
+        [[self window] setBackgroundColor:[UIColor wta_colorNamed:@"color2"]];
     }
 }
 

@@ -24,42 +24,42 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
     return _colorDictionary;
 }
 
-+ (instancetype)primaryColor
++ (instancetype)wta_primaryColor
 {
-    return [self colorNamed:UIColorPrimaryColorName];
+    return [self wta_colorNamed:UIColorPrimaryColorName];
 }
 
-+ (instancetype)secondaryColor
++ (instancetype)wta_secondaryColor
 {
-    return [self colorNamed:UIColorSecondaryColorName];
+    return [self wta_colorNamed:UIColorSecondaryColorName];
 }
 
-+ (instancetype)tertiaryColor
++ (instancetype)wta_tertiaryColor
 {
-    return [self colorNamed:UIColorTertiaryColorName];
+    return [self wta_colorNamed:UIColorTertiaryColorName];
 }
 
-+ (instancetype)colorNamed:(NSString *)colorName
++ (instancetype)wta_colorNamed:(NSString *)colorName
 {
     return [[self wt_colors] objectForKey:colorName];
 }
 
-+ (void)setPrimaryColor:(UIColor *)color
++ (void)wta_setPrimaryColor:(UIColor *)color
 {
-    [self setColor:color forName:UIColorPrimaryColorName];
+    [self wta_setColor:color forName:UIColorPrimaryColorName];
 }
 
-+ (void)setSecondaryColor:(UIColor *)color
++ (void)wta_setSecondaryColor:(UIColor *)color
 {
-    [self setColor:color forName:UIColorSecondaryColorName];
+    [self wta_setColor:color forName:UIColorSecondaryColorName];
 }
 
-+ (void)setTertiaryColor:(UIColor *)color
++ (void)wta_setTertiaryColor:(UIColor *)color
 {
-    [self setColor:color forName:UIColorTertiaryColorName];
+    [self wta_setColor:color forName:UIColorTertiaryColorName];
 }
 
-+ (void)setColor:(UIColor *)color forName:(NSString *)colorName
++ (void)wta_setColor:(UIColor *)color forName:(NSString *)colorName
 {
     NSParameterAssert(colorName);
     if (color == nil)
@@ -73,7 +73,7 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
     }
 }
 
-+ (BOOL)setColors:(NSDictionary *)colors
++ (BOOL)wta_setColors:(NSDictionary *)colors
 {
     // Validate values
     for (id value in [colors allValues])
@@ -87,7 +87,7 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
     return YES;
 }
 
-+ (BOOL)setColorsWithContentsOfFile:(NSString *)path
++ (BOOL)wta_setColorsWithContentsOfFile:(NSString *)path
 {
     NSParameterAssert(path != nil);
     NSDictionary *colors = nil;
@@ -114,31 +114,31 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
         NSMutableDictionary *parsedColors = [NSMutableDictionary new];
         [colors enumerateKeysAndObjectsUsingBlock:^(id key, NSString *obj, BOOL *stop) {
             
-            UIColor *color = [self colorWithString:obj];
+            UIColor *color = [self wta_colorWithString:obj];
             [parsedColors setValue:color forKey:key];
             
         }];
-        return [self setColors:parsedColors];
+        return [self wta_setColors:parsedColors];
     }
     
     return NO;
 }
 
-+ (instancetype)colorWithString:(NSString *)colorString
++ (instancetype)wta_colorWithString:(NSString *)colorString
 {
     if ([colorString hasPrefix:@"rgb("] || [colorString hasPrefix:@"rgba("])
     {
-        return [UIColor colorWithRGBAString:colorString];
+        return [UIColor wta_colorWithRGBAString:colorString];
     }
     else if ([colorString hasPrefix:@"#"] || [colorString hasPrefix:@"0x"])
     {
-        return [UIColor colorWithHexString:colorString];
+        return [UIColor wta_colorWithHexString:colorString];
     }
     
     return nil;
 }
 
-+ (instancetype)colorWithHexString:(NSString *)hexString
++ (instancetype)wta_colorWithHexString:(NSString *)hexString
 {
     CGColorRef colorRef = CGColorCreateWithHexString(hexString);
     UIColor *color = [UIColor colorWithCGColor:colorRef];
@@ -146,13 +146,13 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
     return color;
 }
 
-+ (instancetype)colorWithHexRGB:(NSUInteger)RGB
++ (instancetype)wta_colorWithHexRGB:(NSUInteger)RGB
 {
     NSUInteger RGBA = (RGB << 8) | 0xFF;
-    return [self colorWithHexRGBA:RGBA];
+    return [self wta_colorWithHexRGBA:RGBA];
 }
 
-+ (instancetype)colorWithHexRGBA:(NSUInteger)RGBA
++ (instancetype)wta_colorWithHexRGBA:(NSUInteger)RGBA
 {
     CGColorRef colorRef = CGColorCreateWithHexRGBA((u_int32_t)RGBA);
     UIColor *color = [UIColor colorWithCGColor:colorRef];
@@ -160,7 +160,7 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
     return color;
 }
 
-+ (instancetype)colorWithRGBAString:(NSString *)RGBAString
++ (instancetype)wta_colorWithRGBAString:(NSString *)RGBAString
 {
     CGColorRef colorRef = CGColorCreateWithRGBAString(RGBAString);
     UIColor *color = [UIColor colorWithCGColor:colorRef];
@@ -168,7 +168,7 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
     return color;
 }
 
-+ (instancetype)colorWith8BitRGBAColorComponents:(const CGFloat *)components
++ (instancetype)wta_colorWith8BitRGBAColorComponents:(const CGFloat *)components
 {
     CGColorRef colorRef = CGColorCreateWith8BitRGBA(components[0],
                                                     components[1],
@@ -179,16 +179,16 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
     return color;
 }
 
-+ (instancetype)colorWith8BitRed:(CGFloat)red
-                           green:(CGFloat)green
-                            blue:(CGFloat)blue
-                           alpha:(CGFloat)alpha
++ (instancetype)wta_colorWith8BitRed:(CGFloat)red
+                               green:(CGFloat)green
+                                blue:(CGFloat)blue
+                               alpha:(CGFloat)alpha
 {
     const CGFloat components[] = {red, green, blue, alpha};
-    return [self colorWith8BitRGBAColorComponents:components];
+    return [self wta_colorWith8BitRGBAColorComponents:components];
 }
 
-- (NSString *)hexStringValue
+- (NSString *)wta_hexStringValue
 {
     NSString *hexString = nil;
     CGColorRef colorRef = [self CGColor];
@@ -210,7 +210,7 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
     return hexString;
 }
 
-- (NSString *)RGBAStringValue
+- (NSString *)wta_RGBAStringValue
 {
     NSString *RGBAString = nil;
     CGColorRef colorRef = [self CGColor];
@@ -236,7 +236,7 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
 
 @implementation NSString (UIColorHelpers)
 
-- (NSString *)hexColorString
+- (instancetype)wta_hexColorString
 {
     NSString *hexString = self;
     if ([hexString hasPrefix:@"#"])
@@ -264,7 +264,7 @@ NSString *const UIColorTertiaryColorName = @"tertiaryColor";
     return nil;
 }
 
-- (NSArray *)RGBColorComponents
+- (NSArray *)wta_RGBColorComponents
 {
     NSString *RGBAString = self;
     NSRange range = [RGBAString rangeOfString:@"("];

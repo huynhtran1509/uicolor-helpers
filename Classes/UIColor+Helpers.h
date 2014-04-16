@@ -12,42 +12,45 @@ UIKIT_EXTERN NSString *const UIColorPrimaryColorName;
 UIKIT_EXTERN NSString *const UIColorSecondaryColorName;
 UIKIT_EXTERN NSString *const UIColorTertiaryColorName;
 
+
 @interface UIColor (Helpers)
 
-+ (instancetype)primaryColor;
-+ (instancetype)secondaryColor;
-+ (instancetype)tertiaryColor;
-+ (instancetype)colorNamed:(NSString *)colorName;
++ (instancetype)wta_primaryColor;
++ (instancetype)wta_secondaryColor;
++ (instancetype)wta_tertiaryColor;
++ (instancetype)wta_colorNamed:(NSString *)colorName;
 
-+ (void)setPrimaryColor:(UIColor *)color;
-+ (void)setSecondaryColor:(UIColor *)color;
-+ (void)setTertiaryColor:(UIColor *)color;
-+ (void)setColor:(UIColor *)color forName:(NSString *)colorName;
-+ (BOOL)setColors:(NSDictionary *)colors;
-+ (BOOL)setColorsWithContentsOfFile:(NSString *)path;
++ (void)wta_setPrimaryColor:(UIColor *)color;
++ (void)wta_setSecondaryColor:(UIColor *)color;
++ (void)wta_setTertiaryColor:(UIColor *)color;
++ (void)wta_setColor:(UIColor *)color forName:(NSString *)colorName;
++ (BOOL)wta_setColors:(NSDictionary *)colors;
++ (BOOL)wta_setColorsWithContentsOfFile:(NSString *)path;
 
-+ (instancetype)colorWithString:(NSString *)colorString;
-+ (instancetype)colorWithHexString:(NSString *)hexString; // #f2f2f2, 0xcbcbcbff
-+ (instancetype)colorWithHexRGB:(NSUInteger)RGB; 
-+ (instancetype)colorWithHexRGBA:(NSUInteger)RGBA;
-+ (instancetype)colorWithRGBAString:(NSString *)RGBAString; // rgba(0.0, 0.0, 0.0, 0.0)
-+ (instancetype)colorWith8BitRGBAColorComponents:(const CGFloat *)components;
-+ (instancetype)colorWith8BitRed:(CGFloat)red
-                           green:(CGFloat)green
-                            blue:(CGFloat)blue
-                           alpha:(CGFloat)alpha;
++ (instancetype)wta_colorWithString:(NSString *)colorString;
++ (instancetype)wta_colorWithHexString:(NSString *)hexString; // #f2f2f2, 0xcbcbcbff
++ (instancetype)wta_colorWithHexRGB:(NSUInteger)RGB;
++ (instancetype)wta_colorWithHexRGBA:(NSUInteger)RGBA;
++ (instancetype)wta_colorWithRGBAString:(NSString *)RGBAString; // rgba(0.0, 0.0, 0.0, 0.0)
++ (instancetype)wta_colorWith8BitRGBAColorComponents:(const CGFloat *)components;
++ (instancetype)wta_colorWith8BitRed:(CGFloat)red
+                               green:(CGFloat)green
+                                blue:(CGFloat)blue
+                               alpha:(CGFloat)alpha;
 
-- (NSString *)hexStringValue;
-- (NSString *)RGBAStringValue;
+- (NSString *)wta_hexStringValue;
+- (NSString *)wta_RGBAStringValue;
 
 @end
+
 
 @interface NSString (UIColorHelpers)
 
-- (NSString *)hexColorString;
-- (NSArray *)RGBColorComponents;
+- (instancetype)wta_hexColorString;
+- (NSArray *)wta_RGBColorComponents;
 
 @end
+
 
 CG_INLINE CGColorRef CGColorCreateWith8BitRGBA(CGFloat r, CGFloat g, CGFloat b, CGFloat a)
 {
@@ -68,7 +71,7 @@ CG_INLINE CGColorRef CGColorCreateWithHexRGBA(u_int32_t RBGA)
 
 CG_INLINE CGColorRef CGColorCreateWithHexString(NSString *hexString)
 {
-    hexString = [hexString hexColorString];
+    hexString = [hexString wta_hexColorString];
     if (hexString != nil)
     {
         u_int32_t RGBA = 0x0;
@@ -80,7 +83,7 @@ CG_INLINE CGColorRef CGColorCreateWithHexString(NSString *hexString)
 
 CG_INLINE CGColorRef CGColorCreateWithRGBAString(NSString *RGBAString)
 {
-    NSArray *components = [RGBAString RGBColorComponents];
+    NSArray *components = [RGBAString wta_RGBColorComponents];
     if ([components count] == 4)
     {
         return CGColorCreateWith8BitRGBA([components[0] floatValue],
